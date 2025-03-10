@@ -1,0 +1,23 @@
+.dashboard {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 40%;
+}
+
+.form button {
+  width: 50%;
+  height: 2rem;
+}
+
+.form input {
+  height: 2rem;
+}

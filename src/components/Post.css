@@ -1,0 +1,11 @@
+.post {
+  background-color: rgb(36, 129, 160);
+  border: 1px solid navy;
+  padding: 0.5rem;
+  width: 15rem;
+  height: 10rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem
+}
