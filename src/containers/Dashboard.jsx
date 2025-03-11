@@ -14,7 +14,6 @@ function Dashboard() {
   const [postData, setPostsData] = useState(posts);
 
   const [clickedPostId, setClickedPostId] = useState(null);
-  console.log(clickedPostId, 'clicked')
   
   const handleChangeFirstPostTitle = () => {
     const updatePosts = postData.map((p, i) => i === 0 ? {...p, title }: p);
