@@ -7,3 +7,5 @@ export const fetchPost = async (postId) => await api.get(`/posts/${postId}`);
 export const deletePost = async (postId) => await api.delete(`/posts/${postId}`);
 
 export const addPost = async (data) => await api.post("/posts", data);
+
+export const updatePost = async (postId, data) => await api.put(`/posts/${postId}`, data);

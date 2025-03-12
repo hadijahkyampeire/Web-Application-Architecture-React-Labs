@@ -17,6 +17,7 @@ function Dashboard() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [postDetails, setPostDetails] = useState(null);
+  const [postToEdit, setPostToEdit] = useState(null);
 
   const [clickedPostId, setClickedPostId] = useState(null);
   const [open, setOpen] = useState(false);
@@ -35,6 +36,11 @@ function Dashboard() {
     getAllPosts();
   };
 
+  const handleEditPost = (post) => {
+    setPostToEdit(post);
+    setPostDetails(post);
+    handleOpen();
+  }
 
   const getAllPosts = () => {
     fetchAllPosts()
@@ -74,11 +80,19 @@ function Dashboard() {
       {loading && <div>Loading post details...</div>}
       {error && <div style={{ color: 'red' }}>{error}</div>}
       {!loading && !error && postDetails ? (
-        <PostDetails post={postDetails} fetchPosts={getAllPosts} handleDeletePost={handlePostDelete} />
+        <PostDetails 
+          post={postDetails} 
+          fetchPosts={getAllPosts} 
+          handleEditPost={handleEditPost}
+          handleDeletePost={handlePostDelete} />
       ) : (
         <div>No clicked post, please click a post to display its details</div>
       )}
-      <AddPostModal open={open} handleClose={handleClose} fetchPosts={getAllPosts} />
+      <AddPostModal 
+        open={open} 
+        handleClose={handleClose} 
+        postToEdit={postToEdit}
+        fetchPosts={getAllPosts} />
     </div>
   )
 }

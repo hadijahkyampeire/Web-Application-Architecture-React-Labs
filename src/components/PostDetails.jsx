@@ -3,7 +3,7 @@ import './PostDetails.css';
 
 import Comments from './Comments';
 
-function PostDetails({ post, handleDeletePost }) {
+function PostDetails({ post, handleDeletePost, handleEditPost }) {
 
   return (
     <div className='post-details'>
@@ -13,7 +13,7 @@ function PostDetails({ post, handleDeletePost }) {
       <h3>Comments</h3>
       <Comments comments={post.comments} />
       <div className='footer'>
-          <button className='btn btn-edit'>Edit</button>
+          <button className='btn btn-edit' onClick={() => handleEditPost(post)}>Edit</button>
           <button 
             className='btn btn-delete' 
             onClick={() => handleDeletePost(post.id)}>
