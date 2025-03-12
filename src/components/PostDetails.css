@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  padding: 0.5rem;
-  width: 100%;
+  padding: 1rem;
+  width: 60%;
   border: 1px solid black;
 }
 
-.post-details .centered {
+.post-details .title {
   text-decoration: underline;
   text-align: center;
 }
@@ -23,6 +23,7 @@
   width: 5rem;
   height: 2rem;
   border: none;
+  cursor: pointer;
 }
 
 .footer .btn-delete {

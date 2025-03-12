@@ -1,15 +1,24 @@
 import React from 'react';
 import './PostDetails.css';
 
-function PostDetails({ post }) {
+import Comments from './Comments';
+
+function PostDetails({ post, handleDeletePost }) {
+
   return (
     <div className='post-details'>
-      <h3 className='centered'>{post.title}</h3>
-      <p className='centered'>{post.author}</p>
-      <p>{post.content}</p>
+      <p className='title'>Title: {post.title}</p>
+      <p className='author'>Author: {post.author}</p>
+      <p>Content: {post.content}</p>
+      <h3>Comments</h3>
+      <Comments comments={post.comments} />
       <div className='footer'>
           <button className='btn btn-edit'>Edit</button>
-          <button className='btn btn-delete'>Delete</button>
+          <button 
+            className='btn btn-delete' 
+            onClick={() => handleDeletePost(post.id)}>
+              Delete
+          </button>
       </div>
     </div>
   )
