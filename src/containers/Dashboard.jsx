@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Posts from '../components/Posts';
 import './dashboard.css';
 import PostDetails from '../components/PostDetails';
+import { fetchAllPosts, fetchPost, deletePost } from '../api/posts';
+import AddPostModal from '../components/AddPostModal';
 
 function Dashboard() {
   const [title, setTitle] = useState('');
@@ -12,14 +14,16 @@ function Dashboard() {
   const [postToEdit, setPostToEdit] = useState(null);
 
   const [clickedPostId, setClickedPostId] = useState(null);
-  console.log(clickedPostId, 'clicked')
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   
   const handleChangeFirstPostTitle = () => {
     const updatePosts = postData.map((p, i) => i === 0 ? {...p, title }: p);
     setPostsData(updatePosts);
   }
 
-  const postToDisplay = postData.find(p => p.id === clickedPostId) || null;
   const handlePostDelete = async (postId) => {
     await deletePost(postId);
     setPostDetails(null);
@@ -64,11 +68,8 @@ function Dashboard() {
             Change Name
         </button>
       </div>
+      <button className='new-post-btn' onClick={handleOpen}>Add New Post</button>
       <Posts posts={postData} setClickedPostId={setClickedPostId} />
-      <h2>Post Details</h2>
-      {postToDisplay !== null
-        ? <PostDetails post={postToDisplay} /> 
-        : <div>No clicked post, please click a post to display its details</div>}
       {loading && <div>Loading post details...</div>}
       {error && <div style={{ color: 'red' }}>{error}</div>}
       {!loading && !error && postDetails ? (
