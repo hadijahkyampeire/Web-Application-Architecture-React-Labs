@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Modal, Box, TextField, Button } from "@mui/material";
-import { addPost, updatePost } from '../api/posts';
+import { addPost, updatePost, fetchAllPosts } from '../api/posts';
 
-function AddPostModal({ open, handleClose, fetchPosts, postToEdit }) {
+function AddPostPage() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const postToEdit = location?.state?.post;
   const [postInput, setPostInput] = useState({ title: "", author: "", content: "" });
 
   useEffect(() => {
@@ -17,6 +21,7 @@ function AddPostModal({ open, handleClose, fetchPosts, postToEdit }) {
     setPostInput({ ...postInput, [e.target.name]: e.target.value });
   };
 
+  const fetchPosts = async () => await fetchAllPosts();
   const handleSubmit = async () => {
     try {
       if(postToEdit) {
@@ -26,8 +31,8 @@ function AddPostModal({ open, handleClose, fetchPosts, postToEdit }) {
       }
       
       fetchPosts();
-      handleClose();
       setPostInput({ title: "", content: "" });
+      navigate("/posts")
     } catch(e) {
       console.error(e.message || "Error add new post");
     }
@@ -35,9 +40,8 @@ function AddPostModal({ open, handleClose, fetchPosts, postToEdit }) {
 
   const { title, author, content } = postInput;
   return (
-    <Modal open={open} onClose={handleClose}>
-    <Box sx={{ width: 400, p: 4, backgroundColor: "white", margin: "auto", mt: 10 }}>
-      <h2>Add a New Post</h2>
+    <Box sx={{ width: 400, p: 4, backgroundColor: "white", margin: "auto", mt: 6 }}>
+      <h2>{postToEdit ? `Edit Post "${postToEdit.title}"` : "Add a New Post"}</h2>
       <TextField
         fullWidth
         label="Title"
@@ -68,11 +72,10 @@ function AddPostModal({ open, handleClose, fetchPosts, postToEdit }) {
         rows={4}
       />
       <Button onClick={handleSubmit} variant="contained" color="success" fullWidth>
-        {postToEdit ? "Update Post" : "Create Post"}
+        {postToEdit ? "Edit Post" : "Create Post"}
       </Button>
     </Box>
-  </Modal>
   )
 }
 
-export default AddPostModal
+export default AddPostPage

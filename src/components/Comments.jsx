@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Comments({ comments }) {
+function Comments({ comments = [] }) {
   return (
     <div>{comments.length > 0 
       ? <ul className='comments-list'>

@@ -1,11 +1,17 @@
 import './App.css'
-import Dashboard from './containers/Dashboard'
+import NavBar from './containers/NavBar'
+import AppRoutes from './routes'
+import { BrowserRouter } from 'react-router-dom';
+import { useAuth, AuthProvider } from './contexts/AuthContext';
+
 
 function App() {
+  const { loggedInUser, isAuthenticated } = useAuth();
 
   return (
     <>
-      <Dashboard />
+      <NavBar isAuthenticated={isAuthenticated} loggedInUser={loggedInUser}/>
+      <AppRoutes />
     </>
   )
 }
