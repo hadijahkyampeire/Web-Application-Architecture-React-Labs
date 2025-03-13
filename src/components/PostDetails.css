@@ -5,6 +5,8 @@
   padding: 1rem;
   width: 60%;
   border: 1px solid black;
+  margin-top: 6rem;
+  margin: 6rem auto;
 }
 
 .post-details .title {
