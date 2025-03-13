@@ -7,8 +7,8 @@ import AddPostModal from '../components/AddPostModal';
 import { PostContext } from '../context/postContext';
 
 function Dashboard() {
-  const {clickedPostId, setClickedPostId } = useContext(PostContext);
-  console.log(clickedPostId, 'select')
+  const { clickedPostId, setClickedPostId } = useContext(PostContext);
+
   const [title, setTitle] = useState('');
   const [postData, setPostsData] = useState([]);
   const [loading, setLoading] = useState(false);

@@ -27,8 +27,6 @@ function AddPostModal({ open, handleClose, fetchPosts, postToEdit }) {
   //   setPostInput({ ...postInput, [e.target.name]: e.target.value });
   // };
 
-  console.log(titleRef.current, 'ddd')
-
   const handleSubmit = async () => {
     const title = titleRef.current.value;
     const author = authorRef.current.value;
@@ -63,6 +61,7 @@ function AddPostModal({ open, handleClose, fetchPosts, postToEdit }) {
             name="title"
             variant="outlined"
             inputRef={titleRef}
+            defaultValue={postToEdit?.title || ""}
             // value={title}
             // onChange={handleChange}
             margin="normal"
@@ -73,6 +72,7 @@ function AddPostModal({ open, handleClose, fetchPosts, postToEdit }) {
             name="author"
             variant="outlined"
             inputRef={authorRef}
+            defaultValue={postToEdit?.author || ""}
             // value={author}
             // onChange={handleChange}
             margin="normal"
@@ -83,6 +83,7 @@ function AddPostModal({ open, handleClose, fetchPosts, postToEdit }) {
             name="content"
             variant="outlined"
             inputRef={contentRef}
+            defaultValue={postToEdit?.content || ""}
             // value={content}
             // onChange={handleChange}
             margin="normal"
