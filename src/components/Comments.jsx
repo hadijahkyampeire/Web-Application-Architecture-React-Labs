@@ -1,6 +1,7 @@
 import React from 'react'
 
 function Comments({ comments }) {
+  console.log("RENDERING-------")
   return (
     <div>{comments.length > 0 
       ? <ul className='comments-list'>
@@ -10,4 +11,4 @@ function Comments({ comments }) {
   )
 }
 
-export default Comments;
+export default React.memo(Comments);
